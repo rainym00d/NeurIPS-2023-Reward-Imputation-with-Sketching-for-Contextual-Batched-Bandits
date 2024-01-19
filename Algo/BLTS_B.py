@@ -82,6 +82,7 @@ def BLTS_B(D_i, _BLTS_B):
 
     for a in config.A:
         # _BLTS_B.B_aj[a] += np.dot(S[a].T, R[a])
+        _BLTS_B.Fai[a] += Sparse_Sketching.matr_multiply(S[a].T, S[a])
         _BLTS_B.B_aj[a] += Sparse_Sketching.matr_multiply(S[a].T, R[a])
         fai_inv = np.linalg.inv(_BLTS_B.Fai[a])
         # _BLTS_B.Theta_line[a] = np.dot(fai_inv, _BLTS_B.B_aj[a])
